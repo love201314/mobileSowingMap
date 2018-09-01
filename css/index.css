@@ -46,3 +46,7 @@ ul, ol {
     width: 100%;
     display: block;
 }
+
+li.active {
+    background-color: #fff;
+}

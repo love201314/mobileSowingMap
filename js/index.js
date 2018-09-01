@@ -3,6 +3,19 @@ var ul = banner.querySelector('ul:first-of-type');
 var firstli = ul.querySelector('li:first-of-type');
 var lastli = ul.querySelector('li:last-of-type');
 
+
+// 动态生成圆点
+var ol = document.createElement('ol');
+ol.style.cssText = 'position: absolute; left: 50%; bottom: 4px; transform: translateX(-50%);';
+banner.appendChild(ol);
+
+for (var i = 0; i < ul.children.length; i++) {
+    var li = document.createElement('li');
+    i == 0? li.classList.add('active') : li.classList.remove('active');
+    li.style.cssText = 'width: 10px; height: 10px; border: 1px solid #fff; border-radius: 50%; float: left; margin: 0 2px;'
+    ol.appendChild(li);
+}
+
 // 复制第一张图片放在最后， 最后一张图片， 放在最前面
 ul.appendChild(firstli.cloneNode(true));
 ul.insertBefore(lastli.cloneNode(true), ul.children[0]);
@@ -14,10 +27,11 @@ ul.style.width = lis.length * bannerWidth + 'px';
 for (var i = 0; i < lis.length; i++) {
     lis[i].style.width = bannerWidth + 'px';
 }
-
+// 向左偏移一个banner的宽度， 显示第一张图片
 ul.style.left = -bannerWidth + 'px';
 
 
+// 改变窗口重新调整宽高， 其实在移动端无需这样
 window.onresize = function () {
     ul.style.width = lis.length * bannerWidth + 'px';
     for (var i = 0; i < lis.length; i++) {
@@ -42,6 +56,18 @@ function startAnimation() {
 // 开始动画
 startAnimation();
 
+
+
+function setCircle(index) {
+    for (var i = 0; i < ol.children.length; i++) {
+        ol.children[i].classList.remove('active');
+    }
+    ol.children[index - 1].classList.add('active');
+}
+
+
+
+
 // 函数节流
 var isEnd = true;// 动画执行结束了， 默认false
 
@@ -63,6 +89,9 @@ ul.addEventListener('webkitTransitionEnd', function () {
         ul.style.left = -index * bannerWidth + 'px';
     }
     isEnd = true;
+
+    // 动画结束了， 改变导航的状态
+    setCircle(index);
 })
 
 // tap 
