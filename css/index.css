@@ -1,0 +1,48 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: '';
+    display: block;
+    visibility: hidden;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+.banner {
+    width: 100%;
+    max-width: 640px;
+    min-width: 320px;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.banner > ul {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 800%;
+}
+
+.banner > ul li {
+    float: left;
+    width: 12.5%;
+}
+
+.banner > ul li img {
+    width: 100%;
+    display: block;
+}
