@@ -129,7 +129,7 @@ ul.addEventListener('touchend', function (e) {
         ul.style.transition = 'left 0.5s ease-in-out'
         ul.style.left = -index * bannerWidth + 'px';
     }
-
+    // 触摸滑动结束， 清空数据， 否则下次滑动， 不是在当前位置
     startX = 0; moveX = 0; distanceX = 0;
 
     startAnimation();
